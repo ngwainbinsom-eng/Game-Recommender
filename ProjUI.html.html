@@ -1,0 +1,221 @@
+<SOftwareUI>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<title>...</title>
+
+<style type="text/css">
+
+header {
+background: linear-gradient(to bottom right, antiquewhite, #f0f0f0);
+height: 130px;
+width: 75%;
+border-radius: 10px;
+margin: auto;
+border: 1px solid black;
+}
+h1 {
+color: black;
+text-align: center;
+}
+header {box-sizing:border-box}
+
+input[type="text"] {
+display: block;
+margin: auto;
+padding: 8px;
+width: 90%;
+max-width: 700px;
+border-radius: 8px;
+border: 1px solid #F9F9F9; 
+}
+article {
+width: 80%;
+height: 350px;
+margin: auto;
+border-radius: 20px;
+margin-top: 50px;
+background: linear-gradient(to bottom right, antiquewhite, #f0f0f0);
+margin-bottom: 50px;
+border: 1px solid black;
+}
+footer {
+height: 200px;
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 15px 0;
+  color: white;
+  border-top: 1px solid #ccc;
+height: 150px;
+}
+
+p {
+text-align: center;
+color: black;
+font-size: 24px;
+font-weight: bold;
+font-family: sans-serif;
+}
+.filters-heading {
+  border-bottom: 2px solid black;
+  padding-bottom: 45px;
+  margin-bottom: 20px;
+  width: 90%;
+margin: auto; 
+}
+.sectionPic {
+background-image: url(pics/pexels-pic1.JPG);
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+width: 90%;
+max-width: 1000px;
+height: 150;
+margin: auto;
+border-radius: 20px;
+margin-top: 50px;
+}
+.filter-box {
+float: left;
+width: 30%;
+margin-top: 20px;
+margin-right: 1%;
+border: 1px solid black;
+border-radius: 10px;
+padding-top: 10px;
+padding-right: 15px;
+background-color: white;
+text-align: center;
+box-sizing: border-box;
+margin-bottom: 10px;
+}
+.filter-box-right{
+float: left;
+width: 30%;
+margin-top: 20px;
+margin-right: 1%;
+border: 1px solid black;
+border-radius: 10px;
+padding-top: 10px;
+padding-right: 15px;
+background-color: white;
+text-align: center;
+box-sizing: border-box;
+margin-bottom: 10px;
+}
+.filter-box-right.clear-left {
+clear: left;
+margin-top: 30px;
+}
+.apply-button {
+padding: 10px 20px;
+margin-top: 50px;
+background-color: gray;
+color: white;
+border: none;
+border-radius: 6px;
+font-size: 16px;
+cursor: pointer;
+}
+.apply-button: hover {
+background-color: #0056b3;
+}
+</style>
+
+</head>
+<body>
+<header>
+<h1>Game Recommender</h1>
+
+<form action="results.html" method="GET" id="filterform"ok>
+<input type="text" name="search" placeholder="Search by game title">
+</header>
+<main>
+<section class="sectionPic"></section>
+<article>
+<p class="filters-heading">Filters:</p>
+
+
+<section class="filter-box">
+<label for="platform">Platform:</label>       
+<select id="platform" name="platform">
+<option value="">All Platforms</option>
+<option value="4">PC</option>
+<option value="18">PlayStation</option>
+<option value="1">Xbox</option>
+<option value="7">Switch</option>
+</select>
+</section>
+<section class="filter-box">
+<label for="game-mode">Game Mode:</label>
+<select id="tag-gameplay" name="tag-gameplay">
+<option value="">All Game Modes</option>
+<option value="single-player">Single Player</option>
+<option value="multiplayer">Multiplayer</option>
+<option value="pvp">PvP</option>
+<option value="sandbox">Sandbox</option>
+<option value="campaign">Campaign</option>
+<option value="survival">Survival</option>
+</select>
+</section>
+
+<section class="filter-box">
+<label for="genre">Genre:</label>
+<select id="genre" name="genre">
+<option value="">All genres</option>
+<option value="action">Action</option>
+<option value="adventure">Adventure</option>
+<option value="role-playing">Role-Playing</option>
+<option value="shooter">Shooter</option>
+<option value="strategy">Strategy</option>
+<option value="simulation">Simulation</option>
+<option value="puzzle">Puzzle</option>
+<option value="platformer">Platform</option>
+<option value="racing">Racing</option>
+<option value="sports">Sports</option>
+<option value="horror">Horror</option>
+<option value="sandbox">Sandbox / Open World</option>
+</select>
+</section>
+
+<section class="filter-box-right">
+<label for="perspective">View Type:</label>
+<select id="tag-perspective" name="tag-perspective">
+<option value="">All Views</option>
+<option value="first-person">First Person</option>
+<option value="third-person">Third Person</option>
+<option value="vr">VR</option>
+</select>
+</section>
+
+<section class="filter-box-right">
+<label for="content-rating">Content Rating:</label>
+<select id="content-rating" name="content-rating">
+<option value="">Any</option>
+<option value="everyone">Everyone</option>
+<option value="teen">Teen</option>
+<option value="mature">Mature</option>
+</select>
+</section>
+
+<section class="filter-box-right">
+<label for="ordering">Sort by:</label>
+<select id="ordering" name="ordering">
+<option value="">Default</option>
+<option value="-rating">Top Rated</option>
+<option value="-released">Newest</option>
+<option value="name">A-Z</option>
+</select>
+</section>
+
+<button type="submit" class="apply-button">Apply Filters</button>
+</form>
+</article>
+
+</main>
+<footer>
+</footer>
+</body>
+</html>
+

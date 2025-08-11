@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>...</title>
+<style type="text/css">
+/* CSS comment */
+header {
+background: linear-gradient(to bottom right, antiquewhite, #f0f0f0);
+height: 100px;
+width: 100%;
+border: 1px solid black;
+}
+
+th {
+vertical-align: middle; 
+}
+img {
+margin: 0; padding: 0; border: none; vertical-align: top;
+border-radius: 10px;
+}
+tr {
+height: 100px; 
+}
+article {
+width: 100%;
+height: 450px;
+margin: auto;
+margin-top: 50px;
+background-color: white;
+margin-bottom: 50px;
+border: 1px solid black;
+
+}
+footer {
+height: 200px;
+  width: 100%;
+  background-color: white;
+  padding: 15px 0;
+  color: white;
+  border-top: 1px solid white;
+height: 150px;
+}
+</style>
+</head>
+<body>
+<!--This is a comment for mark-up-->
+<header>
+<table>
+<tr>
+<th colspan="2">RESULTS:</th>
+</tr>
+</table>
+<nav>
+</nav>
+</header>
+<main>
+<article>
+<div id="game-results"></div>
+</article>
+</main>
+<footer>
+</footer>
+<script>
+const apiKey = '632cceb278b14d9fb3c151e6f13e4d5c';
+const params = new URLSearchParams(window.location.search);
+let apiUrl = `https://api.rawg.io/api/games?key=${apiKey}`;
+
+
+const search = params.get('search');
+if (search) {
+  apiUrl += `&search=${search}`;
+}
+
+
+const platform = params.get('platform');
+if (platform) {
+  apiUrl += `&platforms=${platform}`;
+}
+
+
+const genre = params.get('genre');
+if (genre) {
+  apiUrl += `&genres=${genre}`;
+}
+
+
+const tagGameplay = params.get('tag-gameplay');
+const tagPerspective = params.get('tag-perspective');
+const tags = [tagGameplay, tagPerspective].filter(Boolean).join(',');
+if (tags) {
+  apiUrl += `&tags=${tags}`;
+}
+
+
+const rating = params.get('content-rating');
+if (rating) {
+  apiUrl += `&esrb_rating=${rating}`;
+}
+
+
+const ordering = params.get('ordering');
+if (ordering) {
+  apiUrl += `&ordering=${ordering}`;
+}
+
+
+fetch(apiUrl)
+  .then(res => res.json())
+  .then(data => {
+    const resultsDiv = document.getElementById('game-results');
+    resultsDiv.innerHTML = '';
+
+    if (data.results.length === 0) {
+      resultsDiv.innerHTML = '<p>No games found.</p>';
+      return;
+    }
+
+    data.results.forEach(game => {
+      const gameBox = document.createElement('div');
+      gameBox.style.border = '1px solid black';
+      gameBox.style.borderRadius = '10px';
+      gameBox.style.padding = '15px';
+      gameBox.style.marginBottom = '20px';
+      gameBox.style.backgroundColor = 'white';
+
+      gameBox.innerHTML = `
+        <h2>${game.name}</h2>
+        <img src="${game.background_image}" width="300">
+        <p><strong>Released:</strong> ${game.released}</p>
+        <p><strong>Rating:</strong> ${game.rating}</p>
+      `;
+
+      resultsDiv.appendChild(gameBox);
+    });
+  })
+  .catch(error => {
+    console.error('Error loading data:', error);
+    document.getElementById('game-results').innerText = 'Something went wrong.';
+  });
+</script>
+
+</body>
+</html>
